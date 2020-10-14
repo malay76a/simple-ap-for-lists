@@ -4,7 +4,13 @@ import { QueryCache, ReactQueryCacheProvider } from 'react-query'
 import GlobalStyle from "./GlobalStyle";
 import Routers from './routes';
 
-const queryCache = new QueryCache()
+const queryCache = new QueryCache({
+    defaultConfig: {
+        queries: {
+            refetchOnWindowFocus: false,
+        },
+    },
+})
 
 ReactDOM.render(
   <React.StrictMode>

@@ -3,7 +3,7 @@ import { useQuery } from 'react-query';
 import fetchUsers from '../../api/fetchUsers';
 
 export default () => {
-    const { isLoading, isError, data, error } = useQuery('todos', fetchUsers)
+    const { isLoading, isError, data, error } = useQuery('users', fetchUsers);
 
     if (isLoading) {
         return <span>Loading...</span>
