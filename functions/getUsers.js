@@ -1,10 +1,9 @@
 const mocker = require('mocker-data-generator').default;
-const uuid = () =>'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,(c,r)=>('x'==с?(r=Math.random()*16|0):(r&0x3|0x8)).toString(16));
 
 const user = {
     id: {
         function: function() {
-            return uuid();
+            return `f${(~~(Math.random()*1e8)).toString(16)}`;
         }
     },
     firstName: {
