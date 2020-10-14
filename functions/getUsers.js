@@ -2,9 +2,7 @@ const mocker = require('mocker-data-generator').default;
 
 const user = {
     id: {
-        function: function() {
-            return `f${(~~(Math.random()*1e8)).toString(16)}`;
-        }
+        chance: 'guid'
     },
     firstName: {
         faker: 'name.firstName'
@@ -12,13 +10,14 @@ const user = {
     lastName: {
         faker: 'name.lastName'
     },
+    email: {
+        faker: 'internet.email'
+    },
     group: {
-        values: ['Management', 'Accounting', 'Human Resources', 'IT']
+        values: ['Management', 'Accounting', 'Human Resources', 'IT', '']
     },
     experience: {
-        function: function() {
-            return Math.floor(Math.random() * Math.floor(5));
-        }
+        faker: 'random.number({"min": 1, "max": 8})'
     }
 }
 
