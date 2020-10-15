@@ -3,20 +3,17 @@ import styled from "styled-components";
 
 export default ({data, onChange, viewType}) => (
     <div>
-        <span>Вид:</span>
+        <span>Вид: </span>
         {data.map(i => (
-            <>
+            <span key={i} >
                 <Input type="radio" id={i}
                        name="contact" value={i} checked={viewType === i}
                        onChange={onChange} />
                 <label htmlFor={i}>{i}</label>
-            </>
+            </span>
         ))}
     </div>
 )
-
-
-
 
 const Input = styled.input`
   display: none;

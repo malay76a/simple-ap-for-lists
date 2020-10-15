@@ -15,7 +15,7 @@ export default ({users}) => (
             {users.map((i,idx) => (
                 <Tr key={i.id} even={idx % 2 === 0}>
                     <Td>{i.firstName} {i.lastName}</Td>
-                    <Td>{i.email}</Td>
+                    <Td><a href={`mailto:${i.email}`}>{i.email}</a></Td>
                     <Td>{i.group}</Td>
                     <Td>{i.experience}</Td>
                 </Tr>
@@ -23,8 +23,6 @@ export default ({users}) => (
         </tbody>
     </Table>
 )
-
-
 
 const Table = styled.table`
   width: 100%;

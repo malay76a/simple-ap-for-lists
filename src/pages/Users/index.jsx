@@ -10,6 +10,9 @@ import sort from '../../utils/sortData';
 import FilterInput from '../../components/FilterInput';
 import Select from '../../components/Select';
 import RadioGroup from '../../components/RedioGroup';
+import Center from '../../components/Center';
+import ListView from '../../components/ListView';
+import GroupsView from '../../components/GroupsView';
 
 export default () => {
     const {isLoading, isError, data, error} = useQuery('users', fetchUsers);
@@ -20,12 +23,22 @@ export default () => {
     const viewArray = ['table', 'list', 'groups'];
 
     if (isLoading) {
-        return <span>Loading...</span>
+        return (
+            <Center>
+                <span>Loading...</span>
+            </Center>
+        )
     }
 
     if (isError) {
-        return <span>Error: {error.message}</span>
+        return (
+            <Center>
+                <span>Error: {error.message}</span>
+            </Center>
+        )
     }
+
+    const sortedAndFilteredData = sort(selectSortOption,filter(findStr, data.user));
 
     return (
         <Container>
@@ -36,9 +49,9 @@ export default () => {
                 <Select alue={selectSortOption} onChange={event => setSelectSortOption(event.target.value)} data={data.sortFields} />
                 <RadioGroup data={viewArray} onChange={event => setViewType(event.target.value)} viewType={viewType} />
             </Panel>
-            {viewType === 'table' ? <TableView users={sort(selectSortOption,filter(findStr, data.user))}/> : null}
-            {viewType === 'list' ? 'list' : null}
-            {viewType === 'groups' ? 'groups' : null}
+            {viewType === 'table' ? <TableView users={sortedAndFilteredData} /> : null}
+            {viewType === 'list' ? <ListView users={sortedAndFilteredData} /> : null}
+            {viewType === 'groups' ? <GroupsView users={sortedAndFilteredData} /> : null}
         </Container>
     )
 }
